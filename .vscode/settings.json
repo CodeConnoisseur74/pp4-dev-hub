@@ -5,5 +5,19 @@
   "workbench.colorCustomizations": {
     "terminal.foreground": "#00FF9D",
     "terminalCursor.foreground": "#00FF9D"
-  }
+  },
+  "files.autoSave": "afterDelay",
+  "editor.fontSize": 16,
+  "editor.fontFamily": "ComicShannsMono Nerd Font Mono",
+  "editor.wordWrap": "on",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "flake8.args": ["--max-line-length=120", "--ignore=E402,F841,F401,E302,E305"],
+  "black-formatter.args": ["--max-line-length=120"],
+  "editor.rulers": [],
+  "pythonIndent.trimLinesWithOnlyWhitespace": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
 }
