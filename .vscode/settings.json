@@ -12,8 +12,6 @@
   "editor.wordWrap": "on",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "flake8.args": ["--max-line-length=120", "--ignore=E402,F841,F401,E302,E305"],
-  "black-formatter.args": ["--max-line-length=120"],
   "editor.rulers": [],
   "pythonIndent.trimLinesWithOnlyWhitespace": true,
   "[python]": {
@@ -21,5 +19,14 @@
     "editor.formatOnSave": true
   },
 
-  "editor.guides.bracketPairs": true
+  "editor.guides.bracketPairs": true,
+
+  "files.associations": {
+    "*.html": "jinja-html",
+  },
+
+   "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "jinja-html": "html"
+  }
 }
