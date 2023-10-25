@@ -1,4 +1,4 @@
-<h1 align="center">FireHouse Restaurant</h1>
+<h1 align="center">Dev Hub</h1>
 <div align="center"><img src="docs/img/main.png"></div>
 
 This website is made for a  . It is the fourth project in the Code institute Full Stack Developer program.
