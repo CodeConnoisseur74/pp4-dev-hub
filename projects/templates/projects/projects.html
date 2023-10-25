@@ -1,4 +1,16 @@
 {% include 'navbar.html' %}
 
+<p>Hello, you are on the {{page}} page</p>
+
+{% if number > 10 %}
+<p>Number is greater than 10</p>
+
+{% elif number == 10%}
+<p>Number is equal to 10</p>
+
+{% else %}
+<p>Number is less than 10</p>
+{% endif %}
+
 <h1>Projects Page</h1>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad praesentium in ut deserunt ipsam, sed aliquid cupiditate laboriosam dolore illum unde. Voluptatibus expedita, alias reprehenderit officiis natus voluptatem cupiditate repellat?</p>
