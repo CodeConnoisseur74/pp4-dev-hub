@@ -38,5 +38,10 @@
   },
   "ruff.importStrategy": "fromEnvironment",
   "ruff.lint.run": "onType",
-  "ruff.trace.server": "messages"
+  "ruff.trace.server": "messages",
+  "editor.codeActionWidget.includeNearbyQuickfixes": true,
+  "editor.formatOnType": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.language.colorizedBracketPairs": [],
+  "pythonIndent.keepHangingBracketOnLine": true
 }

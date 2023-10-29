@@ -1,3 +1,5 @@
+{% block content %}
+
 {% include 'navbar.html' %}
 
 <p>Hello, you are on the {{page}} page</p>
@@ -12,5 +14,15 @@
 <p>Number is less than 10</p>
 {% endif %}
 
-<h1>Projects Page</h1>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad praesentium in ut deserunt ipsam, sed aliquid cupiditate laboriosam dolore illum unde. Voluptatibus expedita, alias reprehenderit officiis natus voluptatem cupiditate repellat?</p>
+<hr>
+
+<h1>Projects</h1>
+
+<ul>
+    {% for project in projects %}
+    <li>Title:{{project.title}} --- {{project.description}} </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock content %}
