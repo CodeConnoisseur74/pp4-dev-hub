@@ -1,6 +1,22 @@
 {% extends "main.html" %}
 {% block content %}
-
-<h1>Project Form</h1>
-
-{% endblock content %}
+    <!-- Main Section -->
+    <main>
+        <div>
+            <div>
+                <a class="backButton" href="{% url 'account' %}"></a>
+                <br />
+                <form class="form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <!-- Input:Text -->
+                        <div class="form__field">
+                            <label for="formInput#text">{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </main>
