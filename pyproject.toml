@@ -1,0 +1,4 @@
+[tool.djlint]
+close_void_tags=true
+max_line_length=120
+ignore="H014,H015,H025"

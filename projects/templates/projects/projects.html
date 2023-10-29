@@ -1,28 +1,24 @@
+{% extends "main.html" %}
 {% block content %}
-
-{% include 'navbar.html' %}
-
-<p>Hello, you are on the {{page}} page</p>
-
-{% if number > 10 %}
-<p>Number is greater than 10</p>
-
-{% elif number == 10%}
-<p>Number is equal to 10</p>
-
-{% else %}
-<p>Number is less than 10</p>
-{% endif %}
-
-<hr>
-
-<h1>Projects</h1>
-
-<ul>
-    {% for project in projects %}
-    <li>Title:{{project.title}} --- {{project.description}} </li>
-    {% endfor %}
-</ul>
-
-
-{% endblock content %}
+    <h1>Projects</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Project</th>
+            <th>Positive Votes</th>
+            <th>Votes</th>
+            <th></th>
+        </tr>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.title }}</td>
+                <td>{{ project.vote_ratio }}%</td>
+                <td>{{ project.vote_ratio }}</td>
+                <td>{{ project.created }}</td>
+                {% for project in projects %}
+                    <td>
+                        <a href="{% url 'project' projects.id %}">View</a>
+                    </td>
+                    <tr>
+                    {% endfor %}
+                </table>

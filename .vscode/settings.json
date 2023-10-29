@@ -34,7 +34,8 @@
 
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
-    "jinja-html": "html"
+    "jinja-html": "html",
+    "django-html": "html"
   },
   "ruff.importStrategy": "fromEnvironment",
   "ruff.lint.run": "onType",
@@ -43,5 +44,8 @@
   "editor.formatOnType": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.language.colorizedBracketPairs": [],
-  "pythonIndent.keepHangingBracketOnLine": true
+  "pythonIndent.keepHangingBracketOnLine": true,
+  "[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
+  "editor.defaultFormatter": "monosans.djlint"
+}
 }
