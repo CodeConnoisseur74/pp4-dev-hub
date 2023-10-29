@@ -34,9 +34,18 @@
 
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
-    "jinja-html": "html"
+    "jinja-html": "html",
+    "django-html": "html"
   },
   "ruff.importStrategy": "fromEnvironment",
   "ruff.lint.run": "onType",
-  "ruff.trace.server": "messages"
+  "ruff.trace.server": "messages",
+  "editor.codeActionWidget.includeNearbyQuickfixes": true,
+  "editor.formatOnType": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.language.colorizedBracketPairs": [],
+  "pythonIndent.keepHangingBracketOnLine": true,
+  "[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
+  "editor.defaultFormatter": "monosans.djlint"
+}
 }
