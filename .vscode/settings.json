@@ -48,5 +48,6 @@
   "[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
   "editor.defaultFormatter": "monosans.djlint"
 },
-"editor.defaultFormatter": "monosans.djlint"
+"editor.defaultFormatter": "monosans.djlint",
+"editor.fontWeight": "bold"
 }

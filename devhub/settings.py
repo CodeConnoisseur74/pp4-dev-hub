@@ -99,7 +99,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'devsearch.urls'
+ROOT_URLCONF = 'devhub.urls'
 
 TEMPLATES = [
     {
@@ -119,7 +119,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'devsearch.wsgi.application'
+WSGI_APPLICATION = 'devhub.wsgi.application'
 
 
 # Database
@@ -127,7 +127,7 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 #  DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'devsearch',
+#         'NAME': 'devhub',
 #         'USER': os.environ.get('DB_USER'),
 #         'PASSWORD': os.environ.get('DB_PASS'),
 #         'HOST': os.environ.get('DB_HOST'),
@@ -212,7 +212,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-# AWS_STORAGE_BUCKET_NAME = 'devsearch-bucket'
+# AWS_STORAGE_BUCKET_NAME = 'devhub-bucket'
 
 
 if os.getcwd() == '/app':
