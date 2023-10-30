@@ -1,3 +1,5 @@
-<h1>Logo</h1>
-<a href="{% url 'profiles' %}">Profile</a>
-<hr />
+{% load static %}
+
+<img src="{% static 'images/devhub-logo.svg' %}" >
+<a href="{% url 'create-project' %}">Add Project</a>
+<hr>
