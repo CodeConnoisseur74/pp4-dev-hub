@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+
 # Create your models here.
 
 from django.db.models.signals import post_save, post_delete
