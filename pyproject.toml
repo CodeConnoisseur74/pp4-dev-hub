@@ -1,4 +1,0 @@
-[tool.djlint]
-close_void_tags=true
-max_line_length=120
-ignore="H006,H014,H015,H021,H025,H029,J018"
