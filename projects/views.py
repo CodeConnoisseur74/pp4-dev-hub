@@ -9,9 +9,8 @@ from .forms import ProjectForm #ReviewForm
 
 
 def projects(request):
-    page = 'projects'
-    number = 10
-    context = {'page': page, 'number': number, 'project': projects} 
+    projects = Project.objects.all()
+    context = {'projects': projects} 
     return render(request, "projects/projects.html", context)
 
 
@@ -43,7 +42,7 @@ def createProject(request):
 
     if request.method == "POST":
         #newtags = request.POST.get("newtags").replace(",", " ").split()
-        form = ProjectForm(request.POST)
+        form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             #project = form.save(commit=False)
