@@ -4,44 +4,18 @@ from django.shortcuts import render #redirect
 from django.http import HttpResponse
 # from django.contrib.auth.decorators
 # from django.contrib import messages
-#from .models import Project  # Tag
-#from .forms import ProjectForm #ReviewForm
+from .models import Project  # Tag
+from .forms import ProjectForm #ReviewForm
 # from .utils import searchProjects paginateProjects
 
-
-projectsList = [
-    {
-        'id': '1',
-        'title': 'Ecommerce Website',
-        'description': 'Fully functional ecommerce website'
-    },
-    {
-        'id': '2',
-        'title': 'Portfolio Website',
-        'description': 'A personal website to write articles and display work'
-    },
-    {
-        'id': '3',
-        'title': 'Social Network',
-        'description': 'An open source project built by the community'
-    }
-]
-
 def projects(request):
-    #projects = Project.objects.all()
-    page = 'projects'
-    number = 10
-    context = {'page': page, 'number': number, 'projects': projectsList}
+    projects = Project.objects.all()
+    context = {'projects': projects}
     return render(request, 'projects/projects.html', context)
 
 def project(request, pk):
-    #projectObj = Project.objects.get(id=pk)
+    projectObj = Project.objects.get(id=pk)
     #form = ReviewForm()
-    projectObj = None
-    for i in projectsList:
-        if i['id'] == pk:
-	        projectObj = i
-
     #if request.method == "POST":
         #form = ReviewForm(request.POST)
         #review = form.save(commit=False)
@@ -54,18 +28,18 @@ def project(request, pk):
     # messages.success(request, "Your review was successfully submitted!")
     #return redirect("project", pk=projectObj.id)
     #projectObj = Project.objects.get(id=pk)
-    return render(request, 'projects/single-project.html', {'project': projectObj})
+    return render(request, 'projects/single-project.html', {'project': projectObj,})
 
 
 
 # @login_required(login_url="login")
-#def createProject(request):
+def createProject(request):
     # profile = request.user.profile
     #form = ProjectForm()
 
     #if request.method == "POST":
         # newtags = request.POST.get("newtags").replace(",", " ").split()
-        #form = ProjectForm(request.POST, request.FILES)
+    form = ProjectForm(request.POST, request.FILES)
         #if form.is_valid():
             #form.save()
             # project = form.save(commit=False)
@@ -78,8 +52,8 @@ def project(request, pk):
             # project.tags.add(tag)
             # return redirect("account")
 
-    #context = {}
-    #return render(request, "projects/project_form.html", context)
+    context = {'form': form}
+    return render(request, "projects/project_form.html", context)
 
 
 # @login_required(login_url="login")
