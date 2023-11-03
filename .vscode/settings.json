@@ -39,7 +39,6 @@
     "jinja-html": "html",
     "django-html": "html"
   },
-  "editor.codeActionWidget.includeNearbyQuickfixes": true,
   "editor.formatOnType": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.language.colorizedBracketPairs": [],
@@ -55,5 +54,6 @@
   "J018",
   "H030,H031"
 ],
-"djlint.useEditorIndentation": true
+"djlint.useEditorIndentation": true,
+"editor.codeActionWidget.includeNearbyQuickFixes": true
 }

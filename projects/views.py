@@ -35,11 +35,11 @@ def project(request, pk):
 # @login_required(login_url="login")
 def createProject(request):
     # profile = request.user.profile
-    #form = ProjectForm()
+    form = ProjectForm()
 
     if request.method == 'POST':
         # newtags = request.POST.get("newtags").replace(",", " ").split()
-        form = ProjectForm(request.POST)
+        form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             # project = form.save(commit=False)
@@ -65,7 +65,7 @@ def updateProject(request, pk):
     if request.method == 'POST':
         # newtags = request.POST.get("newtags").replace(",", " ").split()
 
-        form = ProjectForm(request.POST, instance=project)
+        form = ProjectForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
             form.save()
             return redirect('projects')
