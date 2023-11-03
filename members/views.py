@@ -8,7 +8,7 @@ from django.shortcuts import render
 # from django.contrib.auth.models import User
 # from django.urls import conf
 # from django.db.models import Q
-# from .models import Profile, Message
+from .models import Profile
 # from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 # from .utils import searchProfiles, paginateProfiles
 
@@ -71,23 +71,22 @@ from django.shortcuts import render
 
 
 def profiles(request):
-#     profiles, search_query = searchProfiles(request)
+    #profiles, search_query = searchProfiles(request)
 
-#     custom_range, profiles = paginateProfiles(request, profiles, 3)
-#     context = {'profiles': profiles, 'search_query': search_query,
-#             'custom_range': custom_range}
-    return render(request, 'members/profiles.html')
+    #custom_range, profiles = paginateProfiles(request, profiles, 3)
+    context = {'profiles': profiles}
+    return render(request, "members/profiles.html")
 
 
-# def userProfile(request, pk):
-#     profile = Profile.objects.get(id=pk)
+def userProfile(request, pk):
+    profile = Profile.objects.get(id=pk)
 
-#     topSkills = profile.skill_set.exclude(description__exact="")
-#     otherSkills = profile.skill_set.filter(description="")
+    topSkills = profile.skill_set.exclude(description__exact="")
+    otherSkills = profile.skill_set.filter(description="")
 
-#     context = {'profile': profile, 'topSkills': topSkills,
-#             "otherSkills": otherSkills}
-#     return render(request, 'user/user-profile.html', context)
+    context = {'profile': profile, 'topSkills': topSkills,
+            "otherSkills": otherSkills}
+    return render(request, 'member/profile.html', context)
 
 
 # @login_required(login_url='login')
@@ -207,8 +206,7 @@ def profiles(request):
 #             message.save()
 
 #             messages.success(request, 'Your message was successfully sent!')
-#             return redirect('user-profile', pk=recipient.id)
+#             return redirect('profile', pk=recipient.id)
 
 #     context = {'recipient': recipient, 'form': form}
 #     return render(request, 'members/message_form.html', context)
-
