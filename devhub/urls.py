@@ -8,8 +8,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('projects.urls')),
-    #path('', include('users.urls')),
+    path('projects', include('projects.urls')),
+    path('', include('members.urls')),
     #path('api/', include('api.urls')),
 
     #path('reset_password/', auth_views.PasswordResetView.as_view(template_name="reset_password.html"),
