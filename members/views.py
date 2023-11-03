@@ -72,10 +72,10 @@ from .models import Profile
 
 def profiles(request):
     #profiles, search_query = searchProfiles(request)
-
+    profiles = Profile.objects.all()
     #custom_range, profiles = paginateProfiles(request, profiles, 3)
     context = {'profiles': profiles}
-    return render(request, "members/profiles.html")
+    return render(request, "members/profiles.html", context)
 
 
 def userProfile(request, pk):
