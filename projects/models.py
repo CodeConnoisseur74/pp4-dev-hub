@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 
-#from django.db.models.deletion import CASCADE  # noqa: F401
+from django.db.models.deletion import CASCADE  # noqa: F401
 #from users.models import Profile
 # Create your models here.
 
@@ -13,7 +13,7 @@ class Project(models.Model):
     featured_image = models.ImageField(null=True, blank=True, default="default.jpg")
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
-    tags = models.ManyToManyField("Tag", blank=True)
+    tags = models.ManyToManyField('Tag', blank=True)
     vote_total = models.IntegerField(default=0, null=True, blank=True)
     vote_ratio = models.IntegerField(default=0, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -24,16 +24,16 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
-    class Meta:
-        ordering = ["-vote_ratio", "-vote_total", "title"]
+    #class Meta:
+        #ordering = ["-vote_ratio", "-vote_total", "title"]
 
-    #@property
-    def imageURL(self):
-        try:
-            url = self.featured_image.url
-        except:  # noqa: E722
-            url = ""
-        return url
+    ##@property
+    #def imageURL(self):
+        #try:
+            #url = self.featured_image.url
+        #except:  # noqa: E722
+            #url = ""
+        #return url
 
     #@property
     #def reviewers(self):
@@ -41,16 +41,16 @@ class Project(models.Model):
         #return queryset
 
     #@property
-    def getVoteCount(self):
-        reviews = self.review_set.all()
-        upVotes = reviews.filter(value="up").count()
-        totalVotes = reviews.count()
+    #def getVoteCount(self):
+        #reviews = self.review_set.all()
+        #upVotes = reviews.filter(value="up").count()
+        #totalVotes = reviews.count()
 
-        ratio = (upVotes / totalVotes) * 100
-        self.vote_total = totalVotes
-        self.vote_ratio = ratio
+        #ratio = (upVotes / totalVotes) * 100
+        #self.vote_total = totalVotes
+        #self.vote_ratio = ratio
 
-        self.save()
+        #self.save()
 
 
 class Review(models.Model):
