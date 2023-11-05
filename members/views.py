@@ -130,7 +130,7 @@ def memberProfile(request, pk):
 #             return redirect('account')
 
 #     context = {'form': form}
-#     return render(request, 'members/skill_form.html', context)https://dennisivy.teachable.com/courses/django-beginners-course/lectures/33190234
+#     return render(request, 'members/skill_form.html', context)
 
 
 # @login_required(login_url='login')
