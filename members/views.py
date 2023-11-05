@@ -71,22 +71,21 @@ from .models import Profile
 
 
 def profiles(request):
-    #profiles, search_query = searchProfiles(request)
+    # profiles, search_query = searchProfiles(request)
     profiles = Profile.objects.all()
-    #custom_range, profiles = paginateProfiles(request, profiles, 3)
-    context = {'profiles': profiles}
+    # custom_range, profiles = paginateProfiles(request, profiles, 3)
+    context = {"profiles": profiles}
     return render(request, "members/profiles.html", context)
 
 
 def memberProfile(request, pk):
-    #profile = Profile.objects.get(id=pk)
+    profile = Profile.objects.get(id=pk)
 
-    #topSkills = profile.skill_set.exclude(description__exact="")
-    #otherSkills = profile.skill_set.filter(description="")
+    topSkills = profile.skill_set.exclude(description__exact="")
+    otherSkills = profile.skill_set.filter(description="")
 
-    #context = {'profile': profile, 'topSkills': topSkills,
-            #"otherSkills": otherSkills}
-    return render(request, 'members/member-profile.html')
+    context = {"profile": profile, "topSkills": topSkills, "otherSkills": otherSkills}
+    return render(request, "members/member-profile.html", context)
 
 
 # @login_required(login_url='login')
