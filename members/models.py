@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 import uuid
 # # Create your models here.
 
-# from django.db.models.signals import post_save, post_delete
-# from django.dispatch import receiver
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 
 
 class Profile(models.Model):
@@ -49,7 +49,7 @@ class Skill(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.username)
 
 
 # class Message(models.Model):
@@ -71,3 +71,20 @@ class Skill(models.Model):
 
 #     class Meta:
 #         ordering = ['is_read', '-created']
+
+#@receiver(post_save, sender=Profile)
+def createProfile(sender, instance, created, **kwargs):
+    if created:
+        member = instance
+        profile = Profile.objects.create(
+            member=member,
+            membername=member.name,
+            email=member.email,
+            name=member.first_name,
+            )
+
+def deleteMember(sender, instance, **kwargs):
+    print('Deleting member...')
+
+post_save.connect(createProfile, sender=Profile)
+post_delete.connect(deleteMember, sender=Profile)
