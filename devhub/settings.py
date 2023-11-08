@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2.6/ref/settings/
 """
 #from datetime import timedelta
-from pathlib import Path
+from pathlib import Path 
 import os
 from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
@@ -127,14 +127,14 @@ WSGI_APPLICATION = 'devhub.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-#  DATABASES = {
+# https://docs.djangoproject.com/en/4.2/ref/settings/databases
+#     DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'devhub',
 #         'USER': os.environ.get('DB_USER'),
 #         'PASSWORD': os.environ.get('DB_PASS'),
-#         'HOST': os.environ.get('DB_HOST'),
+#         'HOST': os.environ.get('DB_HOST')
 #         'PORT': '5432',
 #     }
 # }
@@ -146,6 +146,20 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Put this .env file in the same folder as <PROJECT_NAME>/settings.py
+# Importatnt: Don't forget to add .env to your .gitignore
+
+#ALLOWED_HOSTS = ['<app_devhub>.herokuapp.com']
+
+# DATABASE_URL = ['postgres://]
+#DATABASE_URL = ['postgres://<db_connect_string>']
+
+# SECURITY WARNING: don't run with development turned on in production!
+# DEBUG var gets setting from this DEVELOPMENT var
+#DEVELOPMENT = True
+
+
 
 
 # Password validation

@@ -71,22 +71,21 @@ from .models import Profile
 
 
 def profiles(request):
-    #profiles, search_query = searchProfiles(request)
+    # profiles, search_query = searchProfiles(request)
     profiles = Profile.objects.all()
-    #custom_range, profiles = paginateProfiles(request, profiles, 3)
-    context = {'profiles': profiles}
+    # custom_range, profiles = paginateProfiles(request, profiles, 3)
+    context = {"profiles": profiles}
     return render(request, "members/profiles.html", context)
 
 
-def userProfile(request, pk):
+def memberProfile(request, pk):
     profile = Profile.objects.get(id=pk)
 
     topSkills = profile.skill_set.exclude(description__exact="")
     otherSkills = profile.skill_set.filter(description="")
 
-    context = {'profile': profile, 'topSkills': topSkills,
-            "otherSkills": otherSkills}
-    return render(request, 'member/profile.html', context)
+    context = {"profile": profile, "topSkills": topSkills, "otherSkills": otherSkills}
+    return render(request, "members/member-profile.html", context)
 
 
 # @login_required(login_url='login')
@@ -131,7 +130,7 @@ def userProfile(request, pk):
 #             return redirect('account')
 
 #     context = {'form': form}
-#     return render(request, 'members/skill_form.html', context)https://dennisivy.teachable.com/courses/django-beginners-course/lectures/33190234
+#     return render(request, 'members/skill_form.html', context)
 
 
 # @login_required(login_url='login')
