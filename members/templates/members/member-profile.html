@@ -7,7 +7,9 @@
                 <div class="column column--1of3">
                     <div class="card text-center">
                         <div class="card__body dev">
-                            <img class="avatar avatar--xl" src="{{ profile.profile_image.url }}" alt=""/>
+                            <img class="avatar avatar--xl"
+                                src="{{ profile.profile_image.url }}"
+                                alt="" />
                             <h2 class="dev__name">{{ profile.name }}</h2>
                             <p class="dev__title">{{ profile.short_intro }}</p>
                             <p class="dev__location">Based in {{ profile.location }}</p>
@@ -17,12 +19,13 @@
                                         <a title="Github" href="{{ profile.social_github }}" target="_blank"><i class="fa-brands fa-github"></i></a>
                                     </li>
                                 {% endif %}
-                                    {% if profile.social_stackoverflow %}
+                                {% if profile.social_stackoverflow %}
                                     <li>
-                                        <a title="Stackoverflow" href="{{ profile.social_twitter }}" target="_blank"><i
-                                                class="fa-brands fa-stack-overflow"></i></a>
+                                        <a title="Stackoverflow"
+                                        href="{{ profile.social_twitter }}"
+                                        target="_blank"><i class="fa-brands fa-stack-overflow"></i></a>
                                     </li>
-                                    {% endif %}
+                                {% endif %}
                                 {% if profile.social_twitter %}
                                     <li>
                                         <a title="Twitter" href="{{ profile.social_twitter }}" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
@@ -33,7 +36,6 @@
                                         <a title="LinkedIn" href="{{ profile.social_linkedin }}" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                                     </li>
                                 {% endif %}
-                            
                                 {% if profile.social_website %}
                                     <li>
                                         <a title="Personal Website"
@@ -42,10 +44,7 @@
                                     </li>
                                 {% endif %}
                             </ul>
-                            {% if request.member.profile.id != profile.id %}
-                                <a href=""
-                                class="btn btn--sub btn--lg">Send Message</a>
-                            {% endif %}
+                            {% if request.member.profile.id != profile.id %}<a href="" class="btn btn--sub btn--lg">Send Message</a>{% endif %}
                         </div>
                     </div>
                 </div>
