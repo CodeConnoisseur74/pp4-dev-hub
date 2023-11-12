@@ -1,8 +1,8 @@
 # from django.dispatch.dispatcher import receiver
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-# from django.contrib.auth.decorators import login_required
-# from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.contrib.auth.models import User
 # from django.urls import conf
 # from django.db.models import Q
@@ -14,8 +14,8 @@ from .models import Profile
 def loginMember(request):
 #     page = 'login'
 
-#     if request.user.is_authenticated:
-#         return redirect('profiles')
+    if request.user.is_authenticated:
+        return redirect('profiles')
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -23,8 +23,8 @@ def loginMember(request):
 
         try:
             member = User.objects.get(username=username)
-        except:  # noqa: E722
-            print('Username does not exist')
+        except:    # noqa: E722
+            messages.error(request, 'Username does not exist.')
 
         member = authenticate(request, username=username, password=password)
 
@@ -34,15 +34,14 @@ def loginMember(request):
             return redirect('profiles')
 
         else:
-        #     messages.error(request, 'Username OR password is incorrect')
-            print('Username OR password is incorrect')
+            messages.error(request, 'Username OR password is incorrect')
 
     return render(request, 'members/login_register.html')
 
 
 def logoutMember(request):
     logout(request)
-    # messages.info(request, 'Member was logged out!')
+    messages.info(request, 'Member was logged out!')
     return redirect('login')
 
 
