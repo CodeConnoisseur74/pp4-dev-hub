@@ -25,15 +25,13 @@
       "source.organizeImports": true
     }
   },
-
   "editor.guides.bracketPairs": true,
-
   "files.associations": {
     "*.html": "jinja-html"
   },
-"[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
-  "editor.defaultFormatter": "monosans.djlint"
-},
+  "[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
+    "editor.defaultFormatter": "monosans.djlint"
+  },
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "jinja-html": "html",
@@ -43,17 +41,32 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.language.colorizedBracketPairs": [],
   "pythonIndent.keepHangingBracketOnLine": true,
-
-"editor.fontWeight": "bold",
-"terminal.integrated.fontFamily": "ComicShannsMono Nerd Font Mono",
-"terminal.integrated.fontSize": 16,
-"djlint.closeVoidTags": true,
-"djlint.enableLinting": true,
-"djlint.ignore": [
-  "H006,H014,H015,H021,H023,H025,H029",
-  "J018",
-  "H030,H031"
-],
-"djlint.useEditorIndentation": true,
-"editor.codeActionWidget.includeNearbyQuickFixes": true
+  "editor.fontWeight": "bold",
+  "terminal.integrated.fontFamily": "ComicShannsMono Nerd Font Mono",
+  "terminal.integrated.fontSize": 16,
+  "djlint.closeVoidTags": true,
+  "djlint.enableLinting": true,
+  "djlint.ignore": [
+    "H006,H014,H015,H021,H023,H025,H029",
+    "J018",
+    "H030,H031"
+  ],
+  "djlint.useEditorIndentation": true,
+  "editor.codeActionWidget.includeNearbyQuickFixes": true,
+  "djlint.formatLanguages": [
+    "django-html",
+    "jinja",
+    "jinja-html",
+    "nj",
+    "njk",
+    "nunjucks",
+    "twig",
+    "handlebars",
+    "hbs",
+    "mustache",
+    "html",
+    "jinja2"
+  ],
+  "djlint.formatAttributeTemplateTags": true,
+  "djlint.noSetFormatting": false
 }
