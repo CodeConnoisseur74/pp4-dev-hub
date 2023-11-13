@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 # from django.urls import conf
 # from django.db.models import Q
@@ -12,7 +13,7 @@ from .models import Profile
 
 
 def loginMember(request):
-#     page = 'login'
+    page = 'login'
 
     if request.user.is_authenticated:
         return redirect('profiles')
@@ -45,9 +46,10 @@ def logoutMember(request):
     return redirect('login')
 
 
-# def registerMember(request):
-#     page = 'register'
+def registerMember(request):
+    page = 'register'
 #     form = CustomUserCreationForm()
+    form = UserCreationForm()
 
 #     if request.method == 'POST':
 #         form = CustomUserCreationForm(request.POST)
@@ -56,7 +58,7 @@ def logoutMember(request):
 #             member.username = member.username.lower()
 #             member.save()
 
-#             messages.success(request, 'User account was created!')
+#             messages.success(request, 'Member account was created!')
 
 #             login(request, member)
 #             return redirect('edit-account')
@@ -65,8 +67,8 @@ def logoutMember(request):
 #             messages.success(
 #                 request, 'An error has occurred during registration')
 
-#     context = {'page': page, 'form': form}
-#     return render(request, 'members/login_register.html', context)
+    context = {'page': page, 'form': form}
+    return render(request, 'members/login_register.html', context)
 
 
 def profiles(request):
