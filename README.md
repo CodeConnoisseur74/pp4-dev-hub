@@ -1,5 +1,5 @@
 <h1 align="center">Dev Hub</h1>
-<div align="center"><img src="docs/img/devhub-logo.png"></div>
+<div align="center"><img src="docs/img/devhub-logo.png" alt=""></div>
 
 This website is made for a  . It is the fourth project in the Code institute Full Stack Developer program.
 

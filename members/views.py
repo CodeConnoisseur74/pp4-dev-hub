@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .forms import CustomUserCreationForm
+
 # from django.urls import conf
 # from django.db.models import Q
 from .models import Profile
@@ -13,62 +14,59 @@ from .models import Profile
 
 
 def loginMember(request):
-    page = 'login'
+    page = "login"
 
     if request.user.is_authenticated:
-        return redirect('profiles')
+        return redirect("profiles")
 
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
 
         try:
             member = User.objects.get(username=username)
-        except:    # noqa: E722
-            messages.error(request, 'Username does not exist.')
+        except User.DoesNotExist:
+            messages.error(request, "Username does not exist")
 
         member = authenticate(request, username=username, password=password)
 
         if member is not None:
             login(request, member)
-        #     return redirect(request.GET['next'] if 'next' in request.GET else 'account')
-            return redirect('profiles')
+            return redirect(request.GET["next"] if "next" in request.GET else "account")
 
         else:
-            messages.error(request, 'Username OR password is incorrect')
+            messages.error(request, "Username OR password is incorrect")
 
-    return render(request, 'members/login_register.html')
+    return render(request, "members/login_register.html")
 
 
 def logoutMember(request):
     logout(request)
-    messages.info(request, 'Member was logged out!')
-    return redirect('login')
+    messages.info(request, "Member was logged out!")
+    return redirect("login")
 
 
 def registerMember(request):
-    page = 'register'
-#     form = CustomUserCreationForm()
-    form = UserCreationForm()
+    page = "register"
+    form = CustomUserCreationForm()
 
-#     if request.method == 'POST':
-#         form = CustomUserCreationForm(request.POST)
-#         if form.is_valid():
-#             member = form.save(commit=False)
-#             member.username = member.username.lower()
-#             member.save()
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            member = form.save(commit=False)
+            member.username = member.username.lower()
+            member.save()
 
-#             messages.success(request, 'Member account was created!')
+            messages.success(request, "Member account was created!")
 
-#             login(request, member)
-#             return redirect('edit-account')
+            login(request, member)
+            return redirect("profiles")
 
-#         else:
-#             messages.success(
-#                 request, 'An error has occurred during registration')
+        else:
+            messages.success(request, "An error has occurred during registration")
 
-    context = {'page': page, 'form': form}
-    return render(request, 'members/login_register.html', context)
+    context = {"page": page, "form": form}
+    return render(request, "members/login_register.html", context)
 
 
 def profiles(request):
