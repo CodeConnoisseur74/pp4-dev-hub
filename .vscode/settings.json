@@ -10,8 +10,8 @@
   "editor.fontSize": 16,
   "editor.fontFamily": "ComicShannsMono Nerd Font Mono",
   "editor.wordWrap": "on",
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
   "editor.rulers": [],
   "pythonIndent.trimLinesWithOnlyWhitespace": true,
   "[python]": {
@@ -26,49 +26,26 @@
     }
   },
   "editor.guides.bracketPairs": true,
-  "files.associations": {
-    "*.html": "jinja-html"
-  },
-  "[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
-    "editor.defaultFormatter": "monosans.djlint"
-  },
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
-    "jinja-html": "html",
-    "django-html": "html"
+    "django-html": "html",
+    "html": "html"
   },
-  "editor.formatOnType": true,
+  "editor.formatOnType": false,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.language.colorizedBracketPairs": [],
   "pythonIndent.keepHangingBracketOnLine": true,
   "editor.fontWeight": "bold",
   "terminal.integrated.fontFamily": "ComicShannsMono Nerd Font Mono",
   "terminal.integrated.fontSize": 16,
-  "djlint.closeVoidTags": true,
-  "djlint.enableLinting": true,
-  "djlint.ignore": [
-    "H006,H014,H015,H021,H023,H025,H029",
-    "J018",
-    "H030,H031"
-  ],
-  "djlint.useEditorIndentation": true,
-  "editor.codeActionWidget.includeNearbyQuickFixes": true,
-  "djlint.formatLanguages": [
-    "django-html",
-    "jinja",
-    "jinja-html",
-    "nj",
-    "njk",
-    "nunjucks",
-    "twig",
-    "handlebars",
-    "hbs",
-    "mustache",
-    "html",
-    "jinja2"
-  ],
-  "djlint.formatAttributeTemplateTags": true,
-  "djlint.noSetFormatting": false,
-  "editor.mouseWheelZoom": true,
-  "editor.fontLigatures": true,
+  "files.associations": {
+    "**/views/**/*.html": "django-html",
+    "*.tpl": "django-html"
+  },
+  "[django-html]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "junstyle.vscode-django-support"
+  },
+  "html.format.templating": true,
+  "ruff.lint.run": "onSave",
 }

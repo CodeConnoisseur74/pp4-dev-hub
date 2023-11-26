@@ -1,20 +1,18 @@
-# from django.dispatch.dispatcher import receiver
+#from django.dispatch.dispatcher import receiver
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import CustomUserCreationForm
-
-# from django.urls import conf
+from django.urls import conf
 # from django.db.models import Q
-from .models import Profile
-# from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
+from .models import Profile  # Message
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm # MessageForm
 # from .utils import searchProfiles, paginateProfiles
 
 
 def loginMember(request):
-    page = "login"
+    #page = "login"
 
     if request.user.is_authenticated:
         return redirect("profiles")
@@ -60,7 +58,7 @@ def registerMember(request):
             messages.success(request, "Member account was created!")
 
             login(request, member)
-            return redirect("profiles")
+            return redirect("edit-account")
 
         else:
             messages.success(request, "An error has occurred during registration")
@@ -87,79 +85,79 @@ def memberProfile(request, pk):
     return render(request, "members/member-profile.html", context)
 
 
-# @login_required(login_url='login')
-# def memberAccount(request):
-#     profile = request.user.profile
+@login_required(login_url="login")
+def memberAccount(request):
+    profile = request.user.profile
 
-#     skills = profile.skill_set.all()
-#     projects = profile.project_set.all()
+    skills = profile.skill_set.all()
+    projects = profile.project_set.all()
 
-#     context = {'profile': profile, 'skills': skills, 'projects': projects}
-#     return render(request, 'members/account.html', context)
-
-
-# @login_required(login_url='login')
-# def editAccount(request):
-#     profile = request.user.profile
-#     form = ProfileForm(instance=profile)
-
-#     if request.method == 'POST':
-#         form = ProfileForm(request.POST, request.FILES, instance=profile)
-#         if form.is_valid():
-#             form.save()
-
-#             return redirect('account')
-
-#     context = {'form': form}
-#     return render(request, 'members/profile_form.html', context)
+    context = {"profile": profile, "skills": skills, "projects": projects}
+    return render(request, "members/account.html", context)
 
 
-# @login_required(login_url='login')
-# def createSkill(request):
-#     profile = request.user.profile
-#     form = SkillForm()
+@login_required(login_url="login")
+def editAccount(request):
+    profile = request.user.profile
+    form = ProfileForm(instance=profile)
 
-#     if request.method == 'POST':
-#         form = SkillForm(request.POST)
-#         if form.is_valid():
-#             skill = form.save(commit=False)
-#             skill.owner = profile
-#             skill.save()
-#             messages.success(request, 'Skill was added successfully!')
-#             return redirect('account')
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
 
-#     context = {'form': form}
-#     return render(request, 'members/skill_form.html', context)
+            return redirect("account")
+
+    context = {"form": form}
+    return render(request, "members/profile_form.html", context)
 
 
-# @login_required(login_url='login')
-# def updateSkill(request, pk):
-#     profile = request.user.profile
-#     skill = profile.skill_set.get(id=pk)
-#     form = SkillForm(instance=skill)
+@login_required(login_url="login")
+def createSkill(request):
+    profile = request.user.profile
+    form = SkillForm()
 
-#     if request.method == 'POST':
-#         form = SkillForm(request.POST, instance=skill)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Skill was updated successfully!')
-#             return redirect('account')
+    if request.method == "POST":
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            skill = form.save(commit=False)
+            skill.owner = profile
+            skill.save()
+            # messages.success(request, "Skill was added successfully!")
+            return redirect("account")
 
-#     context = {'form': form}
-#     return render(request, 'members/skill_form.html', context)
+    context = {"form": form}
+    return render(request, "members/skill_form.html", context)
 
 
-# @login_required(login_url='login')
-# def deleteSkill(request, pk):
-#     profile = request.user.profile
-#     skill = profile.skill_set.get(id=pk)
-#     if request.method == 'POST':
-#         skill.delete()
-#         messages.success(request, 'Skill was deleted successfully!')
-#         return redirect('account')
+@login_required(login_url="login")
+def updateSkill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    form = SkillForm(instance=skill)
 
-#     context = {'object': skill}
-#     return render(request, 'delete_template.html', context)https://dennisivy.teachable.com/courses/django-beginners-course/lectures/33190379
+    if request.method == "POST":
+        form = SkillForm(request.POST, instance=skill)
+        if form.is_valid():
+            form.save()
+            # messages.success(request, "Skill was updated successfully!")
+            # return redirect("account")
+
+    context = {"form": form}
+    return render(request, "members/skill_form.html", context)
+
+
+@login_required(login_url="login")
+def deleteSkill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    if request.method == "POST":
+        skill.delete()
+        messages.success(request, "Skill was deleted successfully!")
+        return redirect("account")
+
+    context = {"object": skill}
+    return render(request, "delete_template.html", context)
 
 
 # @login_required(login_url='login')
