@@ -37,12 +37,11 @@ class Profile(models.Model):
     class Meta:
         ordering = ["created"]
 
-        # @property
-
+    @property
     def imageURL(self):
         try:
             url = self.profile_image.url
-        except:  # noqa: E722
+        except (ValueError, AttributeError):
             url = ""
         return url
 

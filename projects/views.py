@@ -2,22 +2,20 @@
 from django.shortcuts import render, redirect
 #from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
+#from django.contrib import messages
 from .models import Project, Tag
 from .forms import ProjectForm, ReviewForm
-#from .utils import searchProjects, paginateProjects
+from .utils import searchProjects # paginateProjects
 
 
 def projects(request):
-    # projects, search_query = searchProjects(request)
+    projects, search_query = searchProjects(request)
     # custom_range, projects = paginateProjects(request, projects, 6)
-    projects = Project.objects.all()
-    context = {'projects': projects}
-    # context = {
-    #     "projects": projects,
-    #     "search_query": search_query,
-    #     "custom_range": custom_range,
-    # }
+    context = {
+        "projects": projects,
+        "search_query": search_query,
+        #"custom_range": custom_range,
+    }
     return render(request, "projects/projects.html", context)
 
 
@@ -34,8 +32,8 @@ def project(request, pk):
 
         projectObj.getVoteCount
 
-        messages.success(request, "Your review was successfully submitted!")
-        return redirect("project", pk=projectObj.id)
+        # messages.success(request, "Your review was successfully submitted!")
+        # return redirect("project", pk=projectObj.id)
 
     return render(
         request, "projects/single-project.html", {"project": projectObj, "form": form}
