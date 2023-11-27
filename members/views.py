@@ -1,18 +1,17 @@
-#from django.dispatch.dispatcher import receiver
+# from django.dispatch.dispatcher import receiver
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.urls import conf
-# from django.db.models import Q
 from .models import Profile  # Message
-from .forms import CustomUserCreationForm, ProfileForm, SkillForm # MessageForm
-# from .utils import searchProfiles, paginateProfiles
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm  # MessageForm
+from .utils import searchProfiles # paginateProfiles
 
 
 def loginMember(request):
-    #page = "login"
+    # page = "login"
 
     if request.user.is_authenticated:
         return redirect("profiles")
@@ -68,10 +67,9 @@ def registerMember(request):
 
 
 def profiles(request):
-    # profiles, search_query = searchProfiles(request)
-    profiles = Profile.objects.all()
+    profiles, search_query = searchProfiles(request)
     # custom_range, profiles = paginateProfiles(request, profiles, 3)
-    context = {"profiles": profiles}
+    context = {"profiles": profiles, "search_query": search_query}
     return render(request, "members/profiles.html", context)
 
 
