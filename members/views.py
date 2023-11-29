@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.urls import conf
 from .models import Profile  # Message
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm  # MessageForm
-from .utils import searchProfiles # paginateProfiles
+from .utils import searchProfiles, paginateProfiles
 
 
 def loginMember(request):
@@ -68,8 +68,12 @@ def registerMember(request):
 
 def profiles(request):
     profiles, search_query = searchProfiles(request)
-    # custom_range, profiles = paginateProfiles(request, profiles, 3)
-    context = {"profiles": profiles, "search_query": search_query}
+    custom_range, profiles = paginateProfiles(request, profiles, 1)
+    context = {
+        "profiles": profiles,
+        "search_query": search_query,
+        "custom_range": custom_range,
+    }
     return render(request, "members/profiles.html", context)
 
 
