@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-# from django.contrib import messages
+from django.contrib import messages
 from .models import Project, Tag
 from .forms import ProjectForm, ReviewForm
 from .utils import searchProjects, paginateProjects
@@ -35,8 +35,8 @@ def project(request, pk):
 
         projectObj.getVoteCount
 
-        # messages.success(request, "Your review was successfully submitted!")
-        # return redirect("project", pk=projectObj.id)
+        messages.success(request, "Your review was successfully submitted!")
+        return redirect("project", pk=projectObj.id)
 
     return render(
         request, "projects/single-project.html", {"project": projectObj, "form": form}

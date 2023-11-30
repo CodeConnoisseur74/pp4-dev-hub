@@ -48,4 +48,7 @@
   },
   "html.format.templating": true,
   "ruff.lint.run": "onSave",
+  "workbench.commandPalette.experimental.suggestCommands": true,
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+  "workbench.editor.enablePreviewFromCodeNavigation": true,
 }
