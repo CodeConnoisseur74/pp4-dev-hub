@@ -61,7 +61,7 @@ class Skill(models.Model):
 
 class Message(models.Model):
     sender = models.ForeignKey(
-        Profile, on_delete=models.SET_NULL, null=True, blank=True
+        Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name="sent"
     )
     recipient = models.ForeignKey(
         Profile,
