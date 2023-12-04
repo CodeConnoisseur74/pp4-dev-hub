@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.urls import conf
+
 # from django.db.models import Q
 from .models import Profile, Message
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
@@ -163,24 +164,24 @@ def deleteSkill(request, pk):
     return render(request, "delete_template.html", context)
 
 
-@login_required(login_url='login')
+@login_required(login_url="login")
 def inbox(request):
     profile = request.user.profile
     messageRequests = profile.messages.all()
     unreadCount = messageRequests.filter(is_read=False).count()
-    context = {'messageRequests': messageRequests, 'unreadCount': unreadCount}
-    return render(request, 'members/inbox.html', context)
+    context = {"messageRequests": messageRequests, "unreadCount": unreadCount}
+    return render(request, "members/inbox.html", context)
 
 
-@login_required(login_url='login')
+@login_required(login_url="login")
 def viewMessage(request, pk):
     profile = request.user.profile
     message = profile.messages.get(id=pk)
     if not message.is_read:  # More Pythonic way to check for False
         message.is_read = True
         message.save()
-    context = {'message': message}
-    return render(request, 'members/message.html', context)
+    context = {"message": message}
+    return render(request, "members/message.html", context)
 
 
 def createMessage(request, pk):
@@ -192,7 +193,7 @@ def createMessage(request, pk):
     except:  # noqa: E722
         sender = None
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = MessageForm(request.POST)
         if form.is_valid():
             message = form.save(commit=False)
@@ -204,8 +205,8 @@ def createMessage(request, pk):
                 message.email = sender.email
             message.save()
 
-            messages.success(request, 'Your message was successfully sent!')
-            return redirect('member-profile', pk=recipient.id)
+            messages.success(request, "Your message was successfully sent!")
+            return redirect("member-profile", pk=recipient.id)
 
-    context = {'recipient': recipient, 'form': form}
-    return render(request, 'members/message_form.html', context)
+    context = {"recipient": recipient, "form": form}
+    return render(request, "members/message_form.html", context)
