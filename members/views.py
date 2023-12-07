@@ -9,10 +9,10 @@ from django.urls import conf
 # from django.db.models import Q
 from .models import Profile, Message
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
-from .utils import searchProfiles, paginateProfiles
+from .utils import search_profiles, paginate_profiles
 
 
-def loginMember(request):
+def login_member(request):
     # page = "login"
 
     if request.user.is_authenticated:
@@ -39,13 +39,13 @@ def loginMember(request):
     return render(request, "members/login_register.html")
 
 
-def logoutMember(request):
+def logout_member(request):
     logout(request)
     messages.info(request, "Member was logged out!")
     return redirect("login")
 
 
-def registerMember(request):
+def register_member(request):
     page = "register"
     form = CustomUserCreationForm()
 
@@ -69,8 +69,8 @@ def registerMember(request):
 
 
 def profiles(request):
-    profiles, search_query = searchProfiles(request)
-    custom_range, profiles = paginateProfiles(request, profiles, 3)
+    profiles, search_query = search_profiles(request)
+    custom_range, profiles = paginate_profiles(request, profiles, 3)
     context = {
         "profiles": profiles,
         "search_query": search_query,
@@ -79,18 +79,18 @@ def profiles(request):
     return render(request, "members/profiles.html", context)
 
 
-def memberProfile(request, pk):
+def member_profile(request, pk):
     profile = Profile.objects.get(id=pk)
 
-    topSkills = profile.skill_set.exclude(description__exact="")
-    otherSkills = profile.skill_set.filter(description="")
+    top_skills = profile.skill_set.exclude(description__exact="")
+    other_skills = profile.skill_set.filter(description="")
 
-    context = {"profile": profile, "topSkills": topSkills, "otherSkills": otherSkills}
+    context = {"profile": profile, "top_skills": top_skills, "other_skills": other_skills}
     return render(request, "members/member-profile.html", context)
 
 
 @login_required(login_url="login")
-def memberAccount(request):
+def member_account(request):
     profile = request.user.profile
 
     skills = profile.skill_set.all()
@@ -101,7 +101,7 @@ def memberAccount(request):
 
 
 @login_required(login_url="login")
-def editAccount(request):
+def edit_account(request):
     profile = request.user.profile
     form = ProfileForm(instance=profile)
 
@@ -117,7 +117,7 @@ def editAccount(request):
 
 
 @login_required(login_url="login")
-def createSkill(request):
+def create_skill(request):
     profile = request.user.profile
     form = SkillForm()
 
@@ -135,7 +135,7 @@ def createSkill(request):
 
 
 @login_required(login_url="login")
-def updateSkill(request, pk):
+def update_skill(request, pk):
     profile = request.user.profile
     skill = profile.skill_set.get(id=pk)
     form = SkillForm(instance=skill)
@@ -152,7 +152,7 @@ def updateSkill(request, pk):
 
 
 @login_required(login_url="login")
-def deleteSkill(request, pk):
+def delete_skill(request, pk):
     profile = request.user.profile
     skill = profile.skill_set.get(id=pk)
     if request.method == "POST":
@@ -174,7 +174,7 @@ def inbox(request):
 
 
 @login_required(login_url="login")
-def viewMessage(request, pk):
+def view_message(request, pk):
     profile = request.user.profile
     message = profile.messages.get(id=pk)
     if not message.is_read:  # More Pythonic way to check for False
@@ -184,7 +184,7 @@ def viewMessage(request, pk):
     return render(request, "members/message.html", context)
 
 
-def createMessage(request, pk):
+def create_message(request, pk):
     recipient = Profile.objects.get(id=pk)
     form = MessageForm()
 
