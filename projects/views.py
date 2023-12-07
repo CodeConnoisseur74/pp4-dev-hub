@@ -7,12 +7,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Project, Tag
 from .forms import ProjectForm, ReviewForm
-from .utils import searchProjects, paginateProjects
+from .utils import search_projects, paginate_projects
 
 
 def projects(request):
-    projects, search_query = searchProjects(request)
-    custom_range, projects = paginateProjects(request, projects, 6)
+    projects, search_query = search_projects(request)
+    custom_range, projects = paginate_projects(request, projects, 6)
 
     context = {
         "projects": projects,
@@ -44,7 +44,7 @@ def project(request, pk):
 
 
 @login_required(login_url="login")
-def createProject(request):
+def create_project(request):
     profile = request.user.profile
     form = ProjectForm()
 
@@ -66,7 +66,7 @@ def createProject(request):
 
 
 @login_required(login_url="login")
-def updateProject(request, pk):
+def update_project(request, pk):
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
     form = ProjectForm(instance=project)
@@ -88,7 +88,7 @@ def updateProject(request, pk):
 
 
 @login_required(login_url="login")
-def deleteProject(request, pk):
+def delete_project(request, pk):
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
     if request.method == "POST":

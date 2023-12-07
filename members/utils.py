@@ -4,7 +4,7 @@ from .models import Profile, Skill
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
-def paginateProfiles(request, profiles, results):
+def paginate_profiles(request, profiles, results):
     page = request.GET.get('page')
     paginator = Paginator(profiles, results)
 
@@ -32,7 +32,7 @@ def paginateProfiles(request, profiles, results):
     return custom_range, profiles
 
 
-def searchProfiles(request):
+def search_profiles(request):
     search_query = ""
 
     if request.GET.get("search_query"):

@@ -9,7 +9,7 @@ from django.conf import settings
 
 
 @receiver(post_save, sender=User)
-def createProfile(sender, instance, created, **kwargs):
+def create_profile(sender, instance, created, **kwargs):
     if created:
         user = instance
         profile = Profile.objects.create(
@@ -32,7 +32,7 @@ def createProfile(sender, instance, created, **kwargs):
 
 
 @receiver(post_save, sender=Profile)
-def updateMember(sender, instance, created, **kwargs):
+def update_member(sender, instance, created, **kwargs):
     profile = instance
     member = profile.member  # Changed from user to member
 
@@ -44,7 +44,7 @@ def updateMember(sender, instance, created, **kwargs):
 
 
 @receiver(post_delete, sender=Profile)
-def deleteMember(sender, instance, **kwargs):
+def delete_member(sender, instance, **kwargs):
     try:
         print("Deleting user...")
         user = instance.member
@@ -55,6 +55,6 @@ def deleteMember(sender, instance, **kwargs):
         )
 
 
-post_save.connect(createProfile, sender=User)
-post_save.connect(updateMember, sender=Profile)
-post_delete.connect(deleteMember, sender=Profile)
+post_save.connect(create_profile, sender=User)
+post_save.connect(update_member, sender=Profile)
+post_delete.connect(delete_member, sender=Profile)

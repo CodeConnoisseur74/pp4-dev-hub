@@ -1,39 +1,39 @@
-.mumble-block {
+.dev-social-block {
     padding: 4.2rem 0;
 }
 
-.mumble-block__title {
+.dev-social-block__title {
     color: var(--color-main);
     font-size: 3rem;
     font-weight: 700;
 }
 
-.mumble-block__info {
+.dev-social-block__info {
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--color-main);
 }
 
-.mumble-block__preview {
+.dev-social-block__preview {
     padding: 3rem 0;
 }
 
-.mumble-block--header {
+.dev-social-block--header {
     background-color: var(--color-light);
 }
 
-.mumble-block--typography .mumble-block__preview>* {
+.dev-social-block--typography .dev-social-block__preview>* {
     line-height: 2;
 }
 
-.mumble-block--card .mumble-block__preview {
+.dev-social-block--card .dev-social-block__preview {
     display: flex;
 }
 
-.mumble-block--card .mumble-block__preview>* {
+.dev-social-block--card .dev-social-block__preview>* {
     margin-right: 2rem;
 }
 
-.mumble-block--avatar .mumble-block__preview>* {
+.dev-social-block--avatar .dev-social-block__preview>* {
     margin-right: 1rem;
 }
 
@@ -79,11 +79,11 @@ pre.codeblock {
     height: 64rem;
 }
 
-.mumble-block__preview {
+.dev-social-block__preview {
     position: relative;
 }
 
-.mumble-block__preview>.loading {
+.dev-social-block__preview>.loading {
     margin-bottom: 24rem;
     position: absolute;
     height: 20rem;

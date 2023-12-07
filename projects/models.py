@@ -26,7 +26,7 @@ class Project(models.Model):
         # ordering = ["created"]
 
     @property
-    def imageURL(self):
+    def image_url(self):
         try:
             url = self.featured_image.url
         except (ValueError, AttributeError):
@@ -39,16 +39,16 @@ class Project(models.Model):
         return queryset
 
     @property
-    def getVoteCount(self):
+    def get_vote_count(self):
         reviews = self.review_set.all()
-        upVotes = reviews.filter(value="up").count()
+        up_votes = reviews.filter(value="up").count()
         # downVotes = reviews.filter(value__exact="down").count()
-        totalVotes = reviews.count()
+        total_votes = reviews.count()
 
-        # print(f"Upvotes: {upVotes}, Downvotes: {downVotes}, Total Votes: {totalVotes}")
+        # print(f"up_votes: {up_votes}, Downvotes: {downVotes}, Total Votes: {total_votes}")
 
-        ratio = (upVotes / totalVotes) * 100  # if totalVotes > 0 else 0
-        self.vote_total = totalVotes
+        ratio = (up_votes / total_votes) * 100  # if total_votes > 0 else 0
+        self.vote_total = total_votes
         self.vote_ratio = ratio
         self.save()
 
