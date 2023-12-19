@@ -11,7 +11,7 @@
   "editor.fontFamily": "ComicShannsMono Nerd Font Mono",
   "editor.wordWrap": "on",
   "editor.formatOnPaste": false,
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.rulers": [],
   "pythonIndent.trimLinesWithOnlyWhitespace": true,
   "[python]": {
@@ -22,7 +22,7 @@
     "editor.insertSpaces": true,
     "editor.codeActionsOnSave": {
       "source.fixAll": "always",
-      "source.organizeImports": true
+      "source.organizeImports": "explicit"
     }
   },
   "editor.guides.bracketPairs": true,
@@ -51,4 +51,10 @@
   "workbench.commandPalette.experimental.suggestCommands": true,
   "workbench.editor.enablePreviewFromQuickOpen": true,
   "workbench.editor.enablePreviewFromCodeNavigation": true,
+  "powermode.enabled": true,
+  "powermode.combo.location": "off",
+  "powermode.combo.counterEnabled": "hide",
+  "powermode.combo.timerEnabled": "hide",
+  "powermode.shake.intensity": 0,
+  "editor.defaultFormatter": "junstyle.vscode-django-support",
 }
