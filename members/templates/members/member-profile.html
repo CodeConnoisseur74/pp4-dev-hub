@@ -7,7 +7,7 @@
         <div class="column column--1of3">
           <div class="card text-center">
             <div class="card__body dev">
-              <img class="avatar avatar--xl" src="{{ profile.imageURL }}" alt="" />
+              <img class="avatar avatar--xl" src="{{ profile.image_url }}" alt="" />
               <h2 class="dev__name">{{ profile.name }}</h2>
               <p class="dev__title">{{ profile.short_intro }}</p>
               <p class="dev__location">Based in {{ profile.location }}</p>
@@ -52,7 +52,7 @@
           <div class="devInfo">
             <h3 class="devInfo__title">Skills</h3>
             <div class="devInfo__skills">
-              {% for skill in topSkills %}
+              {% for skill in top_skills %}
                 <div class="devSkill">
                   <h4 class="devSkill__title">{{ skill.name }}</h4>
                   <p class="devSkill__info">{{ skill.description }}</p>
@@ -60,7 +60,7 @@
               {% endfor %}
               <h3 class="devInfo__subtitle">Other Skills</h3>
               <div class="devInfo__otherSkills">
-                {% for skill in otherSkills %}
+                {% for skill in other_skills %}
                   <span class="tag tag--pill tag--sub tag--lg"><small>{{ skill }}</small></span>
                 {% endfor %}
               </div>
@@ -73,7 +73,7 @@
                 <div class="column">
                   <div class="card project">
                     <a href="{% url 'project' project.id %}" class="project">
-                      <img class="project__thumbnail" src="{{ project.imageURL }}" alt="project thumbnail" />
+                      <img class="project__thumbnail" src="{{ project.image_url }}" alt="project thumbnail" />
                       <div class="card__body">
                         <h3 class="project__title">{{ project.title }}</h3>
                         <p>

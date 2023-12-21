@@ -76,5 +76,6 @@ a {
     text-decoration: none;
     display: inline-block;
     color: var(--color-gray);
-    font-weight: var(--font-medium);
+    font-weight: var(--font-bold);
 }
+

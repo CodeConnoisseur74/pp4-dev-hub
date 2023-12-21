@@ -38,7 +38,7 @@ class Profile(models.Model):
         ordering = ["created"]
 
     @property
-    def imageURL(self):
+    def image_url(self):
         try:
             url = self.profile_image.url
         except (ValueError, AttributeError):

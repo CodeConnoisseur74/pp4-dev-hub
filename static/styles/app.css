@@ -399,7 +399,7 @@ Profile
 .devSkill__title {
     font-size: 1.65rem;
     font-weight: 500;
-    color: var(--color-sub-light);
+    color: var(--color-main-light);
 }
 
 @media screen and (min-width: 700px) {
@@ -528,7 +528,6 @@ Projects Page
 }
 
 .project__thumbnail {
-    height: 25rem;
     object-fit: cover;
     object-position: top center;
 }
@@ -602,10 +601,11 @@ Account Settings
 }
 
 .settings__table {
+    border: 2px solid var(--color-light);
     margin-top: 3rem;
     margin-bottom: 5rem;
     padding: 0 3rem;
-    background: var(--color-white);
+    background: var(--color-primary);
 }
 
 .settings__table tr {
@@ -617,7 +617,7 @@ Account Settings
 }
 
 .settings__table tr:not(:last-child) td {
-    border-bottom: 2px solid var(--color-white-light);
+    border-bottom: 2px solid var(--color-sub);
 }
 
 .settings__thumbnail {
@@ -640,8 +640,8 @@ Account Settings
     padding-right: 1rem;
     width: auto;
     font-size: 1.6rem;
-    font-weight: 500;
-    color: var(--color-sub);
+    font-weight: 700;
+    color: var(--color-text);
 }
 
 .settings__tableInfo p {
@@ -745,7 +745,7 @@ Inbox
 .inbox__title span {
     font-size: 2.4rem;
     font-weight: 700;
-    color: var(--color-sub);
+    color: var(--color-main-light);
     text-transform: uppercase;
     text-align: left;
     margin-bottom: 3rem;
@@ -757,7 +757,7 @@ Inbox
 
 .messages {
     list-style: none;
-    background: var(--color-white);
+    background: var(--color-primary);
     padding: 0.5rem 3rem;
     border: 2px solid var(--color-light);
     border-radius: 0.7rem;
@@ -852,7 +852,7 @@ Form Page
 
 .formPage .formWrapper {
     list-style: none;
-    background: var(--color-white);
+    background: var(--color-primary);
     padding: 3.5rem 5rem;
     border: 2px solid var(--color-light);
     border-radius: 0.7rem;
