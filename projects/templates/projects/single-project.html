@@ -26,14 +26,14 @@
           <div class="singleProject__info">{{ project.description }}</div>
           <div class="comments singleProject__comments">
             <h3 class="singleProject__subtitle singleProject__comments">Feedback</h3>
-            <h5 class="project--rating">
+            <h5 class="project--rating vote--comments">
               {{ project.vote_ratio }}% Positive Feedback ({{ project.vote_total }}
               Vote{{ project.vote_total|pluralize:'s' }})
             </h5>
             {% if request.user.profile.id in project.reviewers %}
-              <p>You have already submitted your review for this project</p>
+              <p class="vote--comments">You have already submitted your review for this project</p>
             {% elif request.user.profile == project.owner %}
-              <p>You cannot review your own work</p>
+              <p class="vote__comments">You cannot review your own work</p>
             {% elif request.user.is_authenticated %}
               <form class="form" action="{% url 'project' project.id %}" method="POST">
                 {% csrf_token %}

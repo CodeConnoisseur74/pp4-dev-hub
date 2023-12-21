@@ -43,9 +43,18 @@ h6 {
     font-weight: var(--font-regular);
 }
 
+.vote--comments {
+    color: var(--color-main-light);
+}
+
 .comment__info,
 p {
     color: var(--color-main-light)
+}
+
+.devSkill__info,
+p {
+    color: var(--color-main-light);
 }
 
 p,
@@ -78,4 +87,3 @@ a {
     color: var(--color-gray);
     font-weight: var(--font-bold);
 }
-

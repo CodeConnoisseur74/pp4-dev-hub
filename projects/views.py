@@ -1,4 +1,4 @@
-# from django.core import paginator
+from django.core import paginator
 from django.shortcuts import render, redirect
 
 # from django.http import HttpResponse
@@ -12,14 +12,16 @@ from .utils import search_projects, paginate_projects
 
 def projects(request):
     projects, search_query = search_projects(request)
-    custom_range, projects = paginate_projects(request, projects, 6)
+    custom_range, projects = paginate_projects(request, projects, 3)
 
     context = {
         "projects": projects,
         "search_query": search_query,
         "custom_range": custom_range,
     }
+    print(projects.object_list)
     return render(request, "projects/projects.html", context)
+
 
 
 def project(request, pk):
@@ -33,7 +35,7 @@ def project(request, pk):
         review.owner = request.user.profile
         review.save()
 
-        projectObj.getVoteCount
+        projectObj.get_vote_count
 
         messages.success(request, "Your review was successfully submitted!")
         return redirect("project", pk=projectObj.id)

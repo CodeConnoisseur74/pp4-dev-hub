@@ -70,7 +70,7 @@ def register_member(request):
 
 def profiles(request):
     profiles, search_query = search_profiles(request)
-    custom_range, profiles = paginate_profiles(request, profiles, 3)
+    custom_range, profiles = paginate_profiles(request, profiles, 6)
     context = {
         "profiles": profiles,
         "search_query": search_query,

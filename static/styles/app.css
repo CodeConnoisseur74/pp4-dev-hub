@@ -523,10 +523,6 @@ Projects Page
 
 /*========== Projects ==========*/
 
-.singleProject__comments {
-    color: var(--color-main-light);
-}
-
 .project__thumbnail {
     object-fit: cover;
     object-position: top center;
