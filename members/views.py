@@ -1,20 +1,15 @@
-from django.dispatch.dispatcher import receiver
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.urls import conf
-
-# from django.db.models import Q
-from .models import Profile, Message
+from django.core.exceptions import ObjectDoesNotExist
+from .models import Profile, Message 
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 from .utils import search_profiles, paginate_profiles
 
 
 def login_member(request):
-    # page = "login"
-
     if request.user.is_authenticated:
         return redirect("profiles")
 
@@ -70,7 +65,7 @@ def register_member(request):
 
 def profiles(request):
     profiles, search_query = search_profiles(request)
-    custom_range, profiles = paginate_profiles(request, profiles, 6)
+    custom_range, profiles = paginate_profiles(request, profiles, 3)
     context = {
         "profiles": profiles,
         "search_query": search_query,
@@ -85,7 +80,11 @@ def member_profile(request, pk):
     top_skills = profile.skill_set.exclude(description__exact="")
     other_skills = profile.skill_set.filter(description="")
 
-    context = {"profile": profile, "top_skills": top_skills, "other_skills": other_skills}
+    context = {
+        "profile": profile,
+        "top_skills": top_skills,
+        "other_skills": other_skills,
+    }
     return render(request, "members/member-profile.html", context)
 
 
@@ -184,14 +183,27 @@ def view_message(request, pk):
     return render(request, "members/message.html", context)
 
 
+@login_required(login_url="login")
 def create_message(request, pk):
-    recipient = Profile.objects.get(id=pk)
-    form = MessageForm()
-
     try:
-        sender = request.user.profile
-    except:  # noqa: E722
-        sender = None
+        recipient = Profile.objects.get(id=pk)
+    except Profile.DoesNotExist:
+        messages.error(request, "The recipient does not exist.")
+        return redirect(
+            "profiles"
+        )
+
+    form = MessageForm()
+    sender = None
+
+    if request.user.is_authenticated:
+        try:
+            sender = request.user.profile
+        except ObjectDoesNotExist:
+            messages.error(request, "You must create a profile to send a message.")
+            return redirect(
+                "create-profile"
+            )
 
     if request.method == "POST":
         form = MessageForm(request.POST)
@@ -201,12 +213,14 @@ def create_message(request, pk):
             message.recipient = recipient
 
             if sender:
-                message.name = sender.name
-                message.email = sender.email
-            message.save()
+                message.name = sender.member.get_full_name()
+                message.email = sender.member.email
 
+            message.save()
             messages.success(request, "Your message was successfully sent!")
-            return redirect("member-profile", pk=recipient.id)
+            return redirect(
+                "member-profile", pk=recipient.id
+            )
 
     context = {"recipient": recipient, "form": form}
     return render(request, "members/message_form.html", context)

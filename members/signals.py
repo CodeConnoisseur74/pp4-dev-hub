@@ -5,15 +5,13 @@ from .models import Profile
 from django.core.mail import send_mail
 from django.conf import settings
 
-# @receiver(post_save, sender=Profile)
-
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
         user = instance
         profile = Profile.objects.create(
-            member=user,  # Changed from user to member
+            member=user,
             username=user.username,
             email=user.email,
             name=user.first_name,
@@ -34,7 +32,7 @@ def create_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Profile)
 def update_member(sender, instance, created, **kwargs):
     profile = instance
-    member = profile.member  # Changed from user to member
+    member = profile.member
 
     if not created:
         member.first_name = profile.name
@@ -50,9 +48,7 @@ def delete_member(sender, instance, **kwargs):
         user = instance.member
         user.delete()
     except User.DoesNotExist:
-        print(
-            "User does not exist. This has to do with the relationship between User and Profile."
-        )
+        print("User does not exist.")
 
 
 post_save.connect(create_profile, sender=User)

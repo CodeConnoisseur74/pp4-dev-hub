@@ -23,7 +23,6 @@ class Project(models.Model):
 
     class Meta:
         ordering = ["-vote_ratio", "-vote_total", "title"]
-        # ordering = ["created"]
 
     @property
     def image_url(self):
@@ -42,10 +41,7 @@ class Project(models.Model):
     def get_vote_count(self):
         reviews = self.review_set.all()
         up_votes = reviews.filter(value="up").count()
-        # downVotes = reviews.filter(value__exact="down").count()
         total_votes = reviews.count()
-
-        # print(f"up_votes: {up_votes}, Downvotes: {downVotes}, Total Votes: {total_votes}")
 
         ratio = (up_votes / total_votes) * 100  # if total_votes > 0 else 0
         self.vote_total = total_votes

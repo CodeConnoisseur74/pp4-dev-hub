@@ -1,9 +1,5 @@
-from django.core import paginator
 from django.shortcuts import render, redirect
-
-# from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-
 from django.contrib import messages
 from .models import Project, Tag
 from .forms import ProjectForm, ReviewForm
@@ -21,7 +17,6 @@ def projects(request):
     }
     print(projects.object_list)
     return render(request, "projects/projects.html", context)
-
 
 
 def project(request, pk):

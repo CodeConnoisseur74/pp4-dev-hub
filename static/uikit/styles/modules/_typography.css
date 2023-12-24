@@ -43,9 +43,7 @@ h6 {
     font-weight: var(--font-regular);
 }
 
-.vote--comments {
-    color: var(--color-main-light);
-}
+
 
 .comment__info,
 p {
@@ -73,6 +71,14 @@ pre,
 pre>*,
 pre>code * {
     font-family: var(--font-monospace) !important;
+}
+
+.vote--comments {
+    color: var(--color-main-light);
+}
+
+p.vote--comments {
+    color: var(--color-main-light);
 }
 
 .singleProject__developer,
