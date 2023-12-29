@@ -101,9 +101,9 @@ DATABASES = {
     }
 }
 
-# import dj_database_url
-# DB_ENV = dj_database_url.config(conn_max_age=600)
-# DATABASES['default'].update(DB_ENV)
+import dj_database_url
+DB_ENV = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(DB_ENV)
 
 
 # Password validation
