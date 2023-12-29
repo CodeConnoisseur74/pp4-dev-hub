@@ -90,22 +90,17 @@ WSGI_APPLICATION = "devhub.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": os.environ.get("devhub"),
-#         "USER": os.environ.get("DB_USER"),
-#         "PASSWORD": os.environ.get("DB_PASS"),
-#         "HOST": os.environ.get("DB_HOST"),
-#         "PORT": "5432",
-#     }
-# }
-
-import dj_database_url
-
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE"))
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "devhub",
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASS"),
+        "HOST": os.environ.get("DB_HOST"),
+        "PORT": "5432",
+    }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/auth-password-validators
@@ -162,28 +157,29 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = "http://127.0.0.1:8000/account/"
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+MEDIA_URL = "/media/"  # change this to /media/
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_STORAGE = "devhub.storages.StaticStorage"
+STATICFILES_LOCATION = "static"
+DEFAULT_FILE_STORAGE = "devhub.storages.MediaStorage"
+MEDIAFILES_LOCATION = "media"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # change to os.path.join(BASE_DIR, "static") ?
 
-# Bucket Config
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME")
-AWS_S3_REGION_NAME = os.environ.get("AWS_REGION_NAME")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")  # change this to /media
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERITY = True
+AWS_S3_SIGNATURE_NAME = "s3v4"
+AWS_S3_REGION_NAME = "eu-north-1"
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-
-# Static and media files
-STATICFILES_STORAGE = "custom_storages.StaticStorage"
-STATICFILES_LOCATION = "static"
-DEFAULT_FILE_STORAGE = "custom_storages.MediaStorage"
-MEDIAFILES_LOCATION = "media"
-
-# Override static and media URLs in production
-STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
-MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
