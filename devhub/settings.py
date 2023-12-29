@@ -93,13 +93,17 @@ WSGI_APPLICATION = "devhub.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "devhub",
+        "NAME": os.environ.get("devhub"),
         "USER": os.environ.get("DB_USER"),
         "PASSWORD": os.environ.get("DB_PASS"),
         "HOST": os.environ.get("DB_HOST"),
         "PORT": "5432",
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
