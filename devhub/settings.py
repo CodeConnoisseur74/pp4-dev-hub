@@ -144,8 +144,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("GOOGLE_CLIENT_ID")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
@@ -156,13 +154,13 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = "http://127.0.0.1:8000/account/"
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-MEDIA_URL = "/media/"  # change this to /media/
+MEDIA_URL = "/media/" 
 
 STATICFILES_STORAGE = "devhub.storages.StaticStorage"
 DEFAULT_FILE_STORAGE = "devhub.storages.MediaStorage"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # change to os.path.join(BASE_DIR, "static") ?
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")  # change this to /media
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
