@@ -27,7 +27,7 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "devhub.heroku.com" , "devhub-d42a9ea2e183.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "devhub.heroku.com", "devhub-d42a9ea2e183.herokuapp.com"]
 
 SITE_ID = 1
 
@@ -154,11 +154,14 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = "http://127.0.0.1:8000/account/"
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
-MEDIA_URL = "/media/" 
+MEDIA_URL = "/media/"
 
 STATICFILES_STORAGE = "devhub.storages.StaticStorage"
 DEFAULT_FILE_STORAGE = "devhub.storages.MediaStorage"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
