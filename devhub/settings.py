@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "projects.apps.ProjectsConfig",
     "members.apps.MembersConfig",
+    "corsheaders",
     "storages",
 ]
 
 
 # TESTING
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

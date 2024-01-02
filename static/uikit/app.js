@@ -1,6 +1,6 @@
 // Invoke Functions Call on Document Loaded
 document.addEventListener('DOMContentLoaded', function () {
-    // hljs.highlightAll();
+    hljs.highlightAll();
 
     // Select all close buttons
     let alertCloseButtons = document.querySelectorAll('.alert__close');
